@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Stopwatch</title>
+
+      <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+      <!--I added more comments to aid my recollection following afterschool study sessions-->
+      
+      <!-- Header with a simple theme toggle (bonus feature)-->
+      <header class="app-header">
+            <label class="theme-toggle">
+                  <!-- Checkbox controls light/dark theme in CSS/JS -->
+                  <input type="checkbox" id="themeToggle" aria-label="Toggle light/dark theme" />
+                  <span class="toggle-ui" aria-hidden="true"></span>
+                  <span class="toggle-text">Theme</span>
+            </label>
+      </header>
+
+      <!-- Main stopwatch area -->
+      <main class="stopwatch" role="main" aria-label="Stopwatch">
+            <!-- Time display.
+         I splitted it into parts so JS can update each one easily. -->
+            <div id="display" class="time-display" aria-live="polite">
+                  <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+                  <span class="dot">.</span><span id="milliseconds">000</span>
+            </div>
+
+            <!-- Controls: exactly 3 buttons as planned -->
+            <div class="controls" role="group" aria-label="Stopwatch controls">
+                  <!-- 1) Start/Stop toggles between running and paused -->
+                  <button id="startStopBtn" class="btn primary-btn" aria-label="Start or stop the stopwatch">
+                        start/stop
+                  </button>
+
+                  <!-- 2) Reset sets time back to 00:00:00.000 and clears laps -->
+                  <button id="resetBtn" class="btn reset-btn" aria-label="Reset stopwatch and clear laps">
+                        reset
+                  </button>
+
+                  <!-- 3) Lap records the current displayed time into the list below -->
+                  <button id="lapBtn" class="btn lap-btn" aria-label="Record current time as a lap">
+                        lap
+                  </button>
+            </div>
+      </main>
+
+      <!-- Laps list (bonus feature) -->
+      <section class="laps-section" aria-labelledby="lapsTitle">
+            <h2 id="lapsTitle" class="laps-title">Laps</h2>
+            <!-- Ordered list gives Lap 1, Lap 2, ... automatically -->
+            <ol id="lapsList" class="laps-list">
+                  <!-- I will use JS to insert <li> items here -->
+            </ol>
+      </section>
+
+      <!-- Small footer (Add for personal branding) -->
+      <footer class="app-footer">
+            <small>Copyright &copy; <span id="year"></span> Stopwatch  by Adeola Adebayo</small>
+      </footer>
+
+      <!-- JavaScript -->
+      <script src="script.js"></script>
+</body>
+
+</html>

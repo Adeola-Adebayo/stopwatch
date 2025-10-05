@@ -1,0 +1,268 @@
+/* ---------------------------
+   1) Color + spacing tokens
+   --------------------------- */
+
+:root {
+      /* From the design guide shared in the assignment */
+      --bg: #b12625;
+      --btn: #fbdb68;
+
+      /* Neutrals for text/shadows */
+      --ink: #ffffff;
+      --ink-dark: #1b1b1b;
+      --shadow: rgba(0, 0, 0, 0.25);
+
+      /* Accent for Lap/links if needed */
+      --accent: #ffffff;
+
+      /* Sizing helpers */
+      --radius-pill: 999px;
+      --radius-lg: 20px;
+      --gap: 1rem;
+}
+
+/* Dark theme variables (JS will set body[data-theme="dark"]) */
+body[data-theme="dark"] {
+      --bg: #1c1c1c;
+      --btn: #fbdb68;
+      /* keep brandy button color for contrast */
+      --ink: #f7f7f7;
+      --ink-dark: #101010;
+      --shadow: rgba(0, 0, 0, 0.5);
+}
+/* ---------------------------
+   2) Base + layout
+   --------------------------- */
+*, *::before, *::after {
+      box-sizing: border-box;
+}
+
+html, body {
+      height: 100%;
+}
+
+body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      /* Subtle background texture: simple radial gradient vignette */
+      background-image:
+            radial-gradient(1000px 600px at 50% -20%, rgba(255, 255, 255, 0.05), transparent 70%);
+      display: flex;
+      flex-direction: column;
+}
+
+/* Keeping the header clean and neat here */
+.app-header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem 1rem;
+}
+
+/* Centered the main stopwatch */
+.stopwatch {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      gap: 1.25rem;
+      padding: 1.5rem;
+      text-align: center;
+}
+
+/* Time display uses a big, clean, "digital" look */
+.time-display {
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(2rem, 7vw, 5rem);
+      letter-spacing: 0.03em;
+      line-height: 1;
+      text-shadow: 0 6px 16px var(--shadow);
+      user-select: none;
+}
+
+.time-display .dot {
+      opacity: 0.9;
+}
+
+/* ---------------------------
+   3) 3 Button controls
+   --------------------------- */
+.controls {
+      display: flex;
+      flex-wrap: wrap;  /* allows wrapping on small screens */
+      justify-content: center;
+      gap: var(--gap);
+}
+
+.btn {
+      appearance: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-pill);
+      background: var(--btn);
+      color: var(--ink-dark);
+      font-weight: 700;
+      text-transform: lowercase;
+      /* to match the sample image vibe */
+      box-shadow: 0 10px 20px var(--shadow);
+      transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+/* Primary emphasizes Start/Stop slightly larger */
+.primary-btn {
+      padding: 1rem 2rem;
+}
+
+/* Hover/focus/active states for interactivity */
+.btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px var(--shadow);
+      filter: brightness(1.02);
+}
+
+.btn:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 16px var(--shadow);
+}
+
+.btn:focus-visible {
+      outline: 3px solid rgba(255, 255, 255, 0.6);
+      outline-offset: 2px;
+}
+
+/* ---------------------------
+   4) Laps section
+   --------------------------- */
+.laps-section {
+      width: min(680px, 92%);
+      margin: 0 auto 1.25rem;
+      padding: 0 0.5rem 1.25rem;
+}
+
+.laps-title {
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin: 0 0 0.5rem;
+}
+
+.laps-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      /* space for ordered list numbers */
+      display: grid;
+      gap: 0.5rem;
+}
+
+.laps-list li {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 0.6rem 0.85rem;
+      line-height: 1.2;
+      box-shadow: 0 4px 10px var(--shadow);
+}
+
+/* ---------------------------
+   5) Footer
+   --------------------------- */
+.app-footer {
+      text-align: center;
+      font-size: 0.85rem;
+      opacity: 0.9;
+      padding: 0.75rem 1rem 1rem;
+}
+
+/* ---------------------------
+   6) Theme toggle switch
+   --------------------------- */
+
+.theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      user-select: none;
+}
+
+.theme-toggle input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+}
+
+.theme-toggle .toggle-ui {
+      width: 44px;
+      height: 26px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.35);
+      box-shadow: inset 0 2px 6px var(--shadow);
+      position: relative;
+      transition: background 160ms ease;
+}
+
+.theme-toggle .toggle-ui::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 6px var(--shadow);
+      transition: transform 160ms ease;
+}
+
+/* Visual change when checked (JS will sync body theme) */
+.theme-toggle input:checked+.toggle-ui {
+      background: rgba(0, 0, 0, 0.4);
+}
+
+.theme-toggle input:checked+.toggle-ui::after {
+      transform: translateX(18px);
+}
+
+.theme-toggle .toggle-text {
+      font-size: 0.9rem;
+      opacity: 0.9;
+}
+
+/* ---------------------------
+   7) Responsiveness
+   --------------------------- */
+
+/* Small phones: stack buttons vertically important */
+@media (max-width: 600px) {
+      .time-display {
+            font-size: clamp(1.8rem, 10vw, 3rem);
+      }
+
+      .controls {
+            flex-direction: column;
+            gap: 0.75rem;
+      }
+
+      .btn,
+      .primary-btn {
+            width: 100%;
+            max-width: 320px;
+      }
+
+      .laps-section {
+            width: 94%;
+      }
+}
+
+/* Larger desktops */
+@media (min-width: 1200px) {
+      .time-display {
+            font-size: 5.5rem;
+      }
+
+      .btn {
+            padding: 1rem 2rem;
+      }
+}
