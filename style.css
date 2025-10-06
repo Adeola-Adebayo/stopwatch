@@ -18,12 +18,12 @@
       /* Sizing helpers */
       --radius-pill: 999px;
       --radius-lg: 20px;
-      --gap: 1rem;
+      --gap: 1.9rem;
 }
 
 /* Dark theme variables (JS will set body[data-theme="dark"]) */
 body[data-theme="dark"] {
-      --bg: #1c1c1c;
+      --bg: #1c1c1c; 
       --btn: #fbdb68;
       /* keep brandy button color for contrast */
       --ink: #f7f7f7;
@@ -102,10 +102,10 @@ body {
       padding: 0.85rem 1.5rem;
       border-radius: var(--radius-pill);
       background: var(--btn);
-      color: var(--ink-dark);
+      color: var(--ink);
       font-weight: 700;
       text-transform: lowercase;
-      box-shadow: 0 10px 20px var(--shadow);
+      box-shadow: 0 10px 0 var(--shadow); /* solid shadow for "lifted" effect */
       transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
 }
 
@@ -122,8 +122,8 @@ body {
 }
 
 .btn:active {
-      transform: translateY(0);
-      box-shadow: 0 8px 16px var(--shadow);
+      transform: translateY(0); 
+      box-shadow: 0 8px 16px var(--shadow); 
 }
 
 .btn:focus-visible {
