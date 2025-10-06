@@ -105,7 +105,6 @@ body {
       color: var(--ink-dark);
       font-weight: 700;
       text-transform: lowercase;
-      /* to match the sample image vibe */
       box-shadow: 0 10px 20px var(--shadow);
       transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
 }
@@ -151,8 +150,7 @@ body {
 
 .laps-list {
       margin: 0;
-      padding-left: 1.2rem;
-      /* space for ordered list numbers */
+      padding-left: 1.2rem;  /* space for ordered list numbers */
       display: grid;
       gap: 0.5rem;
 }
@@ -234,7 +232,7 @@ body {
    7) Responsiveness
    --------------------------- */
 
-/* Small phones: stack buttons vertically important */
+/* Small phones: stack buttons vertically*/
 @media (max-width: 600px) {
       .time-display {
             font-size: clamp(1.8rem, 10vw, 3rem);
