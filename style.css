@@ -109,6 +109,13 @@ body {
       transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
 }
 
+.btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;   /* no hover shift */
+      box-shadow: 8px 10px 0 var(--shadow); /* keeps base look */
+}
+
 /* Primary emphasizes Start/Stop slightly larger */
 .primary-btn {
       padding: 1rem 2rem;
